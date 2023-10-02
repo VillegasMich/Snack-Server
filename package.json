@@ -1,0 +1,19 @@
+{
+  "name": "snackserver",
+  "module": "app.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --hot app.ts"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "elysia": "^0.7.15"
+  }
+}

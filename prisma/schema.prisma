@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    String  @id @default(uuid())
+  email String  @unique
+  name  String
+  phone String  @unique
+  ingredients UserIngredient[]
+  createdAt DateTime @default(now())
+}
+
+model Ingredient {
+  id    Int  @id @default(autoincrement())
+  name  String @unique
+  user UserIngredient[]
+  dishes Dish[] // implicit n to m
+}
+
+model UserIngredient {
+  user  User @relation(fields: [userID], references: [id]) // Relation 1 to 1
+  userID String @unique // FK
+  ingredient  Ingredient @relation(fields: [ingredientID], references: [id]) // Relation 1 to 1
+  ingredientID Int @unique // FK
+  addedAt  DateTime @default(now())
+  ammount Int 
+}
+
+model Dish {
+  id    Int  @id @default(autoincrement())
+  name  String @unique
+  rating Rating?
+  ingredients Ingredient[] // implicit n to m
+}
+
+enum Rating {
+  EXCELLENT
+  AVARAGE
+  BAD
+}

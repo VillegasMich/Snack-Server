@@ -19,8 +19,10 @@ model User {
 model Ingredient {
   id    Int  @id @default(autoincrement())
   name  String @unique
+  description String?
   user UserIngredient[]
   dishes Dish[] // implicit n to m
+  category Category[]
 }
 
 model UserIngredient {
@@ -35,8 +37,17 @@ model UserIngredient {
 model Dish {
   id    Int  @id @default(autoincrement())
   name  String @unique
+  instructions String
   rating Rating?
   ingredients Ingredient[] // implicit n to m
+  category Category[]
+}
+
+model Category {
+  id Int  @id @default(autoincrement())
+  name  String @unique
+  dishes Dish[]
+  ingredients Ingredient[]
 }
 
 enum Rating {

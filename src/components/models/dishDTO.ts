@@ -7,3 +7,5 @@ export const dishDTO = t.Object({
   rating: t.Optional(t.Enum(Rating)),
   instruction: t.String(instructionOptions),
 });
+
+export type DishDTO = (typeof dishDTO)['static'];

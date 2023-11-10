@@ -8,3 +8,5 @@ export const userDTO = t.Object({
   phone: t.String(),
   createdAt: t.Date(),
 });
+
+export type UserDTO = (typeof userDTO)['static'];

@@ -20,7 +20,7 @@ model Ingredient {
   id    Int  @id @default(autoincrement())
   name  String @unique
   description String?
-  user UserIngredient[]
+  userIngredient UserIngredient[]
   dishes Dish[] // implicit n to m
   category Category[]
 }

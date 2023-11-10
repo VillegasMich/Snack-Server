@@ -1,12 +1,9 @@
 import { Elysia, t } from 'elysia';
-import { PrismaClient } from '@prisma/client';
+import { ingredientRouter } from './src/components/routes/ingredient';
 
-const prisma = new PrismaClient();
-
-const app = new Elysia();
-app.get('/', () => 'Hi');
-
-app.listen(8080);
+const app = new Elysia()
+  .group('/ingredients', (app) => app.use(ingredientRouter))
+  .listen(8080);
 
 console.log(
   `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`

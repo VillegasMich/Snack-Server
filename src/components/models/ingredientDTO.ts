@@ -6,3 +6,12 @@ export const ingredientDTO = t.Object({
   name: t.String(nameOptions),
   description: t.Optional(t.String(descriptionOptions)),
 });
+
+export type IngredientDTO = (typeof ingredientDTO)['static'];
+
+export const createIngredientDTO = t.Object({
+  name: t.String(nameOptions),
+  description: t.Optional(t.String(descriptionOptions)),
+});
+
+export type CreateIngredientDTO = (typeof ingredientDTO)['static'];

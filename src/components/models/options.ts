@@ -14,6 +14,6 @@ export const descriptionOptions = {
 };
 
 export const instructionOptions = {
-  maxLength: 500,
+  maxLength: 1000,
   minLength: 10,
 };

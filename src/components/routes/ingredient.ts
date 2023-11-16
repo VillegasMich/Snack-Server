@@ -5,7 +5,7 @@ import { createIngredientDTO, ingredientDTO } from '../models/ingredientDTO';
 
 export const ingredientRouter = new Elysia()
   .onError(({ error }) => {
-    return new Response(error.toString(), {
+    return new Response('❌ Ingredient route error! \n\n' + error.toString(), {
       status: 400,
     });
   })

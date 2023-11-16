@@ -1,11 +1,11 @@
 import { CreateIngredientDTO, IngredientDTO } from '../models/ingredientDTO';
 import { ingredientService } from '../services/ingredient';
 
-const getAll = async () => {
+const getAll = () => {
   return ingredientService.getAll();
 };
 
-const post = async (body: CreateIngredientDTO) => {
+const post = (body: CreateIngredientDTO) => {
   return ingredientService.post(body);
 };
 

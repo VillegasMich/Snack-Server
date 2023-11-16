@@ -14,4 +14,4 @@ export const createIngredientDTO = t.Object({
   description: t.Optional(t.String(descriptionOptions)),
 });
 
-export type CreateIngredientDTO = (typeof ingredientDTO)['static'];
+export type CreateIngredientDTO = (typeof createIngredientDTO)['static'];

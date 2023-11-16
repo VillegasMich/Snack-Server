@@ -1,26 +1,15 @@
-import { Elysia } from 'elysia';
-import { prisma } from '../../database/databaseConnection';
-import { IngredientDTO } from '../models/ingredientDTO';
-// import { ingredientService } from '../services/ingredient';
+import { CreateIngredientDTO, IngredientDTO } from '../models/ingredientDTO';
+import { ingredientService } from '../services/ingredient';
 
-// const getAll = async (): Promise<IngredientDTO[]> => {
-//   const ingredients = await prisma.ingredient.findMany({});
+const getAll = async () => {
+  return ingredientService.getAll();
+};
 
-//   return ingredients;
-// };
-// {
-//   response: t.Array(ingredientDTO),
-// }
+const post = async (body: CreateIngredientDTO) => {
+  return ingredientService.post(body);
+};
 
-// const post = () => {
-//   try {
-//     ingredientService.post;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// export const ingredientController = {
-//   getAll,
-//   post,
-// };
+export const ingredientController = {
+  getAll,
+  post,
+};

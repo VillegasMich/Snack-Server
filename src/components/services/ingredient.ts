@@ -1,9 +1,15 @@
-import { Elysia } from 'elysia';
-import { prisma } from '../../database/databaseConnection';
-import { CreateIngredientDTO } from '../models/ingredientDTO';
+import { CreateIngredientDTO, IngredientDTO } from '../models/ingredientDTO';
+import { ingredientRepo } from '../repositories/ingredient';
 
-// const post =
+const getAll = async (): Promise<IngredientDTO[]> => {
+  return await ingredientRepo.getAll();
+};
 
-// export const ingredientService = {
-//   post,
-// };
+const post = async (body: CreateIngredientDTO): Promise<IngredientDTO> => {
+  return await ingredientRepo.post(body);
+};
+
+export const ingredientService = {
+  getAll,
+  post,
+};

@@ -1,37 +1,18 @@
-import { Elysia, t } from 'elysia';
-import { prisma } from '../../database/databaseConnection';
-import {
-  CreateIngredientDTO,
-  IngredientDTO,
-  createIngredientDTO,
-  ingredientDTO,
-} from '../models/ingredientDTO';
+import { Elysia } from 'elysia';
+import { ingredientController } from '../controllers/ingredient';
+
+import { createIngredientDTO, ingredientDTO } from '../models/ingredientDTO';
 
 export const ingredientRouter = new Elysia()
-  .get(
-    '/get',
-    async (): Promise<IngredientDTO[]> => {
-      const ingredients = await prisma.ingredient.findMany({});
-
-      return ingredients;
-    },
-    {
-      response: [ingredientDTO],
-    }
-  )
-  .post(
-    '/post',
-    async ({ body }): Promise<CreateIngredientDTO> => {
-      const newIngredient = await prisma.ingredient.create({
-        data: {
-          name: body.name,
-          description: body.description,
-        },
-      });
-      return newIngredient;
-    },
-    {
-      body: createIngredientDTO,
-      response: ingredientDTO,
-    }
-  );
+  .onError(({ error }) => {
+    return new Response(error.toString(), {
+      status: 400,
+    });
+  })
+  .get('/get', ingredientController.getAll, {
+    response: [ingredientDTO],
+  })
+  .post('/post', ({ body }) => ingredientController.post(body), {
+    body: createIngredientDTO,
+    response: ingredientDTO,
+  });
